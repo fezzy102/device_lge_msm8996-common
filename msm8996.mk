@@ -136,10 +136,6 @@ PRODUCT_PACKAGES += \
     memtrack.msm8996 \
     liboverlay
 
-# Doze mode
-PRODUCT_PACKAGES += \
-    LGDoze
-
 # Fingerprint
 PRODUCT_PACKAGES += \
     fingerprintd
@@ -147,10 +143,6 @@ PRODUCT_PACKAGES += \
 # For android_filesystem_config.h
 PRODUCT_PACKAGES += \
     fs_config_files
-
-# Gesture handler
-PRODUCT_PACKAGES += \
-    GestureHandler
 
 # GPS
 PRODUCT_PACKAGES += \
