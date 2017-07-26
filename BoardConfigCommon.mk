@@ -203,3 +203,6 @@ WIFI_DRIVER_FW_PATH_STA     := "/system/etc/firmware/fw_bcmdhd.bin"
 
 # inherit from the proprietary version
 -include vendor/lge/msm8996-common/BoardConfigVendor.mk
+
+#Include Magisk root
+DEFAULT_ROOT_METHOD := Magisk
