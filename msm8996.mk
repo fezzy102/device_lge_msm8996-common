@@ -138,7 +138,8 @@ PRODUCT_PACKAGES += \
     hdmi_cec.msm8996 \
     hwcomposer.msm8996 \
     memtrack.msm8996 \
-    liboverlay
+    liboverlay \
+    GestureHandler
 
 # Fingerprint
 PRODUCT_PACKAGES += \
