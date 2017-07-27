@@ -139,7 +139,8 @@ PRODUCT_PACKAGES += \
     hwcomposer.msm8996 \
     memtrack.msm8996 \
     liboverlay \
-    GestureHandler
+    GestureHandler \
+    LGDoze
 
 # Fingerprint
 PRODUCT_PACKAGES += \
