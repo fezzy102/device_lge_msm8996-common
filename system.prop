@@ -1,6 +1,9 @@
 #
-# System Properties for LG G5
+# System Properties for LG MSM8996
 #
+
+# Art
+ro.sys.fw.dex2oat_thread_count=4
 
 # Audio
 ro.qc.sdk.audio.ssr=false
@@ -33,16 +36,17 @@ audio_hal.period_size=192
 use.qti.sw.alac.decoder=true
 use.qti.sw.ape.decoder=true
 flac.sw.decoder.24bit.support=true
+persist.speaker.prot.enable=true
+persist.spkr.cal.duration=5
 
 # Bluetooth
 persist.bt.enableAptXHD=true
-ro.bt.bdaddr_path="/data/misc/bdaddr"
+ro.bt.bdaddr_path="/data/misc/bluetooth/bdaddr"
 
 # Camera
 ro.camera.notify_nfc=1
 vidc.debug.perf.mode=2
 vidc.enc.dcvs.extra-buff-count=2
-vidc.enc.disable.pq=true
 media.camera.ts.monotonic=0
 persist.audio.camcorder.stereo=true
 

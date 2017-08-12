@@ -358,11 +358,17 @@ on boot
 on property:sys.boot_completed=1
     write /sys/devices/virtual/lg_rgb_led/use_patterns/setting 0
 
+service conn_init /system/bin/hwaddrs
+    class core
+    user root
+    group system wifi
+    oneshot
+
 on property:init.svc.conn_init=stopped
     chmod 0644 /data/misc/wifi/config
     chown system wifi /data/misc/wifi/config
-    chmod 0644 /data/misc/bdaddr
-    chown bluetooth bluetooth /data/misc/bdaddr
+    chmod 0644 /data/misc/bluetooth/bdaddr
+    chown bluetooth bluetooth /data/misc/bluetooth/bdaddr
 
 on post-fs
     chmod 0660 /dev/lge_dm_tty0
@@ -398,7 +404,6 @@ on post-fs-data
     chown dhcp system /data/misc/dhcp
     mkdir /data/misc/wide-dhcpv6 0770 dhcp dhcp
     chown dhcp system /data/misc/wide-dhcpv6
-    mkdir /data/misc/wifi/config 0770 wifi wifi
 
     # Create port-bridge log dir
     mkdir /data/misc/port_bridge 0770 radio radio
@@ -468,9 +473,11 @@ on post-fs-data
     chmod 0660 /proc/bluetooth/sleep/lpm
     chmod 0660 /proc/bluetooth/sleep/btwrite
     chmod 0660 /sys/class/rfkill/rfkill0/state
-    chown bluetooth net_bt_stack /proc/bluetooth/sleep/lpm
-    chown bluetooth net_bt_stack /proc/bluetooth/sleep/btwrite
-    chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/state
+    chmod 0660 /sys/class/rfkill/rfkill0/type
+    chown bluetooth bluetooth /proc/bluetooth/sleep/lpm
+    chown bluetooth bluetooth /proc/bluetooth/sleep/btwrite
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
 
     # Create directory for FOTA
     mkdir /data/fota 0771
@@ -681,10 +688,10 @@ service rmt_storage /system/bin/rmt_storage
     writepid /dev/cpuset/system-background/tasks
 
 service rfs_access /system/bin/rfs_access
-   class core
-   user root
-   group system net_raw
-   writepid /dev/cpuset/system-background/tasks
+    class core
+    user root
+    group system net_raw
+    writepid /dev/cpuset/system-background/tasks
 
 service tftp_server /system/bin/tftp_server
     class main
@@ -741,6 +748,11 @@ service qti /system/vendor/bin/qti
     writepid /dev/cpuset/system-background/tasks
 
 service qcom-sh /system/bin/sh /init.qcom.sh
+    class late_start
+    user root
+    oneshot
+
+service radio-sh /system/bin/sh /init.radio.sh
     class late_start
     user root
     oneshot
