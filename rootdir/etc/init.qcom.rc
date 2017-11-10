@@ -67,7 +67,7 @@ on init
     chmod 0660 /sys/fs/cgroup/memory/bg/tasks
 
     # Camera shims
-    export LD_SHIM_LIBS "/system/lib/hw/camera.msm8996.so|/system/lib/libshim_camera.so:/system/vendor/lib/libmmcamera_ppeiscore.so|/system/lib/libshim_camera.so"
+    export LD_SHIM_LIBS "/system/vendor/lib/hw/camera.msm8996.so|/system/vendor/lib/libshim_camera.so:/system/vendor/lib/libmmcamera_ppeiscore.so|/system/vendor/lib/libshim_camera.so"
 
 on post-fs
     chmod 0755 /sys/kernel/debug/tracing
@@ -93,7 +93,7 @@ on early-boot
 
 on boot
     # Bring up CPUs
-    exec - root root system -- /vendor/bin/init.power.sh
+    start power-sh
 
     # Set permissions by node reads by dumpstate
     chmod 0644 /sys/devices/system/cpu/present
@@ -805,17 +805,25 @@ service qti /vendor/bin/qti
     group radio net_raw oem_2901 usb net_admin
     writepid /dev/cpuset/system-background/tasks
 
-service qcom-sh /vendor/bin/sh /vendor/bin/init.qcom.sh
+service power-sh /vendor/bin/init.power.sh
+    class main
+    user root
+    group root system
+    disabled
+    oneshot
+
+service qcom-sh /vendor/bin/init.qcom.sh
     class late_start
     user root
     oneshot
 
-service radio-sh /vendor/bin/sh /vendor/bin/init.radio.sh
+service radio-sh /vendor/bin/init.radio.sh
     class late_start
     user root
+    group root radio
     oneshot
 
-service sensor-sh /vendor/bin/sh /vendor/bin/init.qcom.sensors.sh
+service sensor-sh /vendor/bin/init.qcom.sensors.sh
     class core
     user root
     oneshot

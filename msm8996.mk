@@ -196,6 +196,12 @@ PRODUCT_PACKAGES += \
     ebtables \
     ethertypes
 
+# IR
+PRODUCT_PACKAGES += \
+    android.hardware.ir@1.0-impl \
+    android.hardware.ir@1.0-service \
+    consumerir.msm8996
+
 # IRQ
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/msm_irqbalance.conf:$(TARGET_COPY_OUT_VENDOR)/etc/msm_irqbalance.conf
@@ -234,6 +240,7 @@ PRODUCT_COPY_FILES += \
 # Net
 PRODUCT_PACKAGES += \
     android.system.net.netd@1.0 \
+    libandroid_net \
     netutils-wrapper-1.0
 
 # NFC
@@ -280,6 +287,13 @@ PRODUCT_PACKAGES += \
     power.qcom \
     thermal.msm8996
 
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/powerhint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.xml
+
+# Qualcomm broadcast whitelist
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/qti_whitelist.xml:system/etc/sysconfig/qti_whitelist.xml
+
 # Recovery
 PRODUCT_PACKAGES += \
     librecovery_updater_msm8996
@@ -309,7 +323,7 @@ PRODUCT_COPY_FILES += \
 
 # Thermal
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/thermal-engine.conf:system/etc/thermal-engine.conf
+    $(LOCAL_PATH)/configs/thermal-engine.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-engine.conf
 
 # Tools
 PRODUCT_PACKAGES += \
@@ -317,6 +331,11 @@ PRODUCT_PACKAGES += \
     libjson \
     libtinyxml \
     libxml2
+
+# Treble
+PRODUCT_FULL_TREBLE_OVERRIDE := true
+PRODUCT_PACKAGES += \
+    vndk-sp \
 
 # USB
 PRODUCT_PACKAGES += \

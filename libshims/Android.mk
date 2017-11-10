@@ -20,6 +20,8 @@ LOCAL_SRC_FILES := \
     camera_shim.cpp
 
 LOCAL_SHARED_LIBRARIES := \
+    liblog \
+    libutils \
     libgui \
     libui
 
@@ -29,6 +31,7 @@ LOCAL_C_INCLUDES := \
 LOCAL_MODULE := libshim_camera
 LOCAL_MODULE_TAGS := optional
 LOCAL_MULTILIB := 32
+LOCAL_VENDOR_MODULE := true
 
 include $(BUILD_SHARED_LIBRARY)
 

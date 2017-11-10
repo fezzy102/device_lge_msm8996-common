@@ -1,5 +1,5 @@
 type fpc_early_loader, domain;
-type fpc_early_loader_exec, exec_type, file_type;
+type fpc_early_loader_exec, exec_type, vendor_file_type, file_type;
 
 init_daemon_domain(fpc_early_loader)
 
