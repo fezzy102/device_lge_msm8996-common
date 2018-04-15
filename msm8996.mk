@@ -152,7 +152,9 @@ PRODUCT_PACKAGES += \
     memtrack.msm8996 \
     libdisplayconfig \
     libgenlock \
-    liboverlay
+    liboverlay \
+    libqdMetaData.system
+
 # display
 TARGET_QCOM_DISPLAY_VARIANT := caf-los8996
 
