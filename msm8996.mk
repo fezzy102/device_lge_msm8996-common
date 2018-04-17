@@ -17,10 +17,11 @@
 
 # Inherit proprietary blobs
 $(call inherit-product-if-exists, vendor/lge/msm8996-common/msm8996-common-vendor.mk)
+$(call inherit-product, vendor/aquarios/config/utils.mk)
 
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
-DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay-lineage
+# DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay-lineage
 
 # Screen density
 PRODUCT_AAPT_CONFIG := normal
@@ -92,6 +93,10 @@ PRODUCT_PACKAGES += \
     libvolumelistener \
     tinymix
 
+# Audio/media
+TARGET_QCOM_AUDIO_VARIANT := caf-msm8996
+TARGET_QCOM_MEDIA_VARIANT := caf-los8996
+
 -include $(LOCAL_PATH)/audio/config.mk
 
 # Bluetooth
@@ -146,10 +151,8 @@ PRODUCT_PACKAGES += \
     libdisplayconfig \
     libgenlock \
     liboverlay
-
-# Doze mode
-PRODUCT_PACKAGES += \
-    LGDoze
+# display
+TARGET_QCOM_DISPLAY_VARIANT := caf-los8996
 
 # DRM
 PRODUCT_PACKAGES += \
