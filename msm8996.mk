@@ -105,7 +105,6 @@ TARGET_QCOM_MEDIA_VARIANT := caf-los8996
 PRODUCT_PACKAGES += \
     android.hardware.bluetooth@1.0-impl \
     android.hardware.bluetooth@1.0-service \
-    hwaddrs \
     libbt-vendor
 
 # Camera
