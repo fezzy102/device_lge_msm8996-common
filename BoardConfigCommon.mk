@@ -17,6 +17,8 @@
 
 COMMON_PATH := device/lge/msm8996-common
 
+ALLOW_MISSING_DEPENDENCIES=true
+
 # inherit from common lge
 -include device/lge/common/BoardConfigCommon.mk
 
@@ -54,6 +56,10 @@ BOARD_RAMDISK_OFFSET     := 0x02200000
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_SOURCE := kernel/lge/msm8996
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
+
+# Audio/media
+TARGET_QCOM_AUDIO_VARIANT := caf-msm8996
+TARGET_QCOM_MEDIA_VARIANT := caf-msm8996
 
 # Audio
 BOARD_USES_ALSA_AUDIO := true
@@ -136,6 +142,8 @@ ENABLE_CPUSETS := true
 
 # Display
 BOARD_USES_ADRENO := true
+TARGET_QCOM_DISPLAY_VARIANT := caf-msm8996
+
 TARGET_CONTINUOUS_SPLASH_ENABLED := true
 TARGET_USES_C2D_COMPOSITION := true
 TARGET_USES_ION := true
